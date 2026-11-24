@@ -1,0 +1,41 @@
+name: Production CI Pipeline
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  automated-test-suite:
+    name: Automated Test Suites (183 Assertions)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Run Phase 2 Portal Architecture Tests
+        run: node tests/unit/portalNavigation.test.js
+
+      - name: Run Phase 3 Core Patient & Referral Tests
+        run: node tests/unit/corePatientReferral.test.js
+
+      - name: Run Phase 4 Cryptographic Security Tests
+        run: node tests/security/cryptographicSecurity.test.js
+
+      - name: Run MLO1 QR Protocol Tests
+        run: node tests/qr/protocol.test.js
+
+      - name: Run Phase 5 PWA & Storage Tests
+        run: node tests/offline/pwaAndStorage.test.js
+
+      - name: Run Phase 5 Sync Queue & Conflict Tests
+        run: node tests/offline/syncQueue.test.js
+
+      - name: Run End-to-End Air-Gap Referral Handoff Tests
+        run: node tests/integration/offlineReferralHandoffE2E.test.js
