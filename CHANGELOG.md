@@ -24,3 +24,4 @@ All notable changes to **MediLink Offline** are documented in this file.
 
 ### Phase 1 — System Architecture & Foundation
 - Authored comprehensive technical architecture documentation (`docs/01`–`10` and `ARCHITECTURE_DECISION_RECORDS.md`) and established project layout standards (`AGENTS.md`).
+

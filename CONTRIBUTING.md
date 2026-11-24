@@ -21,3 +21,4 @@ node tests/offline/pwaAndStorage.test.js
 node tests/offline/syncQueue.test.js
 node tests/qr/protocol.test.js
 ```
+

@@ -43,7 +43,41 @@ Rural healthcare referral networks face severe infrastructure and security bottl
 
 ---
 
-## 3. Three Role-Based Portals
+## 3. Visual Gallery & Actual Running Interface
+
+| Clinical Officer Sign-In Portal | PHC Clinical Triage & Outpatient Dashboard |
+|:---:|:---:|
+| ![PHC Sign-In Portal](docs/screenshots/phc_login.png) | ![PHC Clinical Dashboard](docs/screenshots/phc_dashboard.png) |
+| *Role-scoped offline authentication portal with 1-click demo credential quick-fill and zero-cloud operation.* | *Real-time PHC triage metrics, active cohort registry, emergency escalation indicators, and IndexedDB health.* |
+
+| New Patient Enrollment (ABHA Validation) | Emergency Referral Creation |
+|:---:|:---:|
+| ![Patient Registration](docs/screenshots/phc_patient_registration.png) | ![Create Emergency Referral](docs/screenshots/phc_create_referral.png) |
+| *Offline demographic intake with strict 14-digit ABHA format enforcement and duplicate prevention.* | *Priority triage scoring (`EMERGENCY_CRITICAL` / `URGENT`), destination selection, and clinical summary capture.* |
+
+| Encrypted Multi-Part QR Generator (`MLO1`) | District Hospital Casualty Intake Dashboard |
+|:---:|:---:|
+| ![Multi-Part Encrypted QR Generator](docs/screenshots/phc_generate_qr.png) | ![District Hospital Dashboard](docs/screenshots/hospital_dashboard.png) |
+| *AES-256-GCM + ECDSA P-256 sealed `MLO1` QR carousel with 1–4 FPS playback and printable referral slip export.* | *Receiving hospital casualty workbench displaying incoming ambulance alerts, bed readiness, and intake status.* |
+
+| Optical QR Scanner & Manual Frame Terminal | ECDSA Verification & PIN-Unlocked Decryption |
+|:---:|:---:|
+| ![Hospital QR Scanner](docs/screenshots/hospital_qr_scanner.png) | ![Referral Signature Verification](docs/screenshots/hospital_verification.png) |
+| *Camera viewfinder and manual `MLO1` frame ingestion supporting out-of-order assembly and CRC32 checks.* | *Trusted Directory sender authenticity verification (`ECDSA P-256`) and PIN-derived `PBKDF2` key unwrapping.* |
+
+| Decrypted Clinical Intake & Bed Admission | Admin Overview & System Health |
+|:---:|:---:|
+| ![Decrypted Clinical Intake Chart](docs/screenshots/hospital_patient_details.png) | ![Admin Dashboard](docs/screenshots/admin_dashboard.png) |
+| *Complete decrypted patient vitals, allergy banners, pre-referral medications, and ICU isolation bed assignment.* | *District health administration console monitoring registered nodes, trust certificates, and sync queue state.* |
+
+| Public Key Trust Directory (`.mldir`) | Cryptographic Security Audit Trail |
+|:---:|:---:|
+| ![Trusted Facility Key Directory](docs/screenshots/admin_trusted_keys.png) | ![Security Audit Logs](docs/screenshots/admin_audit_logs.png) |
+| *Certified facility `ECDSA P-256` & `RSA-OAEP` public keys with SHA-256 fingerprints and offline `.mldir` export.* | *Immutable local audit log recording patient enrollment, digital signing, decryption, and key lifecycle events.* |
+
+---
+
+## 4. Three Role-Based Portals
 
 | Portal | Primary Users | Core Capabilities |
 | :--- | :--- | :--- |
@@ -53,7 +87,7 @@ Rural healthcare referral networks face severe infrastructure and security bottl
 
 ---
 
-## 4. Cryptographic Security Architecture
+## 5. Cryptographic Security Architecture
 
 All cryptographic operations use the standard W3C Web Crypto API (`window.crypto.subtle`) implemented in [`src/crypto/webCryptoEngine.js`](src/crypto/webCryptoEngine.js) and [`src/services/keyManagementService.js`](src/services/keyManagementService.js):
 
@@ -70,7 +104,7 @@ Header metadata (`version | referralId | senderFacilityId | recipientFacilityId 
 
 ---
 
-## 5. MLO1 Multi-Part QR Transfer Protocol
+## 6. MLO1 Multi-Part QR Transfer Protocol
 
 High-density clinical referral envelopes are deterministically serialized (`canonicalizeJson`), chunked into camera-friendly 350–450 byte frames, and rendered as pure JavaScript ISO/IEC 18004 SVG QR matrices ([`src/qr/qrCodeGenerator.js`](src/qr/qrCodeGenerator.js)):
 
@@ -84,7 +118,7 @@ MLO1|<refIdShort>|<seq>|<total>|<crc32>|<chunkData>
 
 ---
 
-## 6. Offline-First & Synchronization Architecture
+## 7. Offline-First & Synchronization Architecture
 
 - **IndexedDB v2 Persistence** ([`src/services/dbService.js`](src/services/dbService.js)): Transactional storage across `facilities`, `users`, `patients`, `referrals_outgoing`, `referrals_received`, `trusted_keys`, `local_credentials`, `sync_queue`, and `audit_logs`.
 - **PWA Service Worker** ([`public/sw.js`](public/sw.js)): Caches the application shell and static bundles (`medilink-v1.0.0`) with an offline fallback ([`public/offline.html`](public/offline.html)), while strictly bypassing HTTP caching for `/api/`, `/clinical/`, and `/referrals/` endpoints.
@@ -92,7 +126,7 @@ MLO1|<refIdShort>|<seq>|<total>|<crc32>|<chunkData>
 
 ---
 
-## 7. Directory Layout
+## 8. Directory Layout
 
 ```text
 MediLink Offline/
@@ -119,7 +153,7 @@ MediLink Offline/
 
 ---
 
-## 8. Quick Start & Demo Credentials
+## 9. Quick Start & Demo Credentials
 
 ### Option A: Test Live in Your Browser
 Visit **[https://sanjanaarathore.github.io/medilink/](https://sanjanaarathore.github.io/medilink/)** — no installation required.
@@ -143,7 +177,7 @@ node server.js
 
 ---
 
-## 9. Automated Verification Suite (`183 / 183` Passing)
+## 10. Automated Verification Suite (`183 / 183` Passing)
 
 All 7 test suites run natively on Node.js (`>=20`) using built-in Web Crypto APIs and an in-memory IndexedDB test driver (also executed automatically via [`.github/workflows/ci.yml`](.github/workflows/ci.yml)):
 
@@ -169,7 +203,7 @@ node tests/qr/protocol.test.js
 
 ---
 
-## 10. Known Limitations & Future Improvements
+## 11. Known Limitations & Future Improvements
 
 ### Known Limitations
 - **Demonstration PIN Fallback**: `authService.js` includes a `1234` fallback PIN check for frictionless browser evaluation; this must be disabled or environment-gated before clinical field deployment.
@@ -182,7 +216,7 @@ node tests/qr/protocol.test.js
 
 ---
 
-## 11. Technical Documentation Suite
+## 12. Technical Documentation Suite
 
 - [`docs/01_PROJECT_OVERVIEW_AND_SCOPE.md`](docs/01_PROJECT_OVERVIEW_AND_SCOPE.md): Vision, scope, and rural referral context.
 - [`docs/02_REQUIREMENTS_SPECIFICATION.md`](docs/02_REQUIREMENTS_SPECIFICATION.md): Functional and non-functional clinical requirements.
@@ -196,7 +230,7 @@ node tests/qr/protocol.test.js
 
 ---
 
-## 12. Resume & Portfolio Entry
+## 13. Resume & Portfolio Entry
 
 ### One-Line Summary
 > *An offline-first secure patient referral handoff PWA built with React 18, IndexedDB, and the W3C Web Crypto API, enabling encrypted air-gapped health transfers via multi-part MLO1 QR codes.*
@@ -208,6 +242,6 @@ node tests/qr/protocol.test.js
 
 ---
 
-## 13. License
+## 14. License
 
 This project is licensed under the [MIT License](LICENSE).
