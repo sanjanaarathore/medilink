@@ -1,0 +1,53 @@
+{
+  "name": "medilink-offline",
+  "version": "0.1.0",
+  "private": true,
+  "description": "An Offline-First Secure Patient Referral Handoff System Using Encrypted QR Codes",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:crypto": "vitest run tests/crypto",
+    "cap:sync": "cap sync",
+    "cap:open:android": "cap open android"
+  },
+  "dependencies": {
+    "@capacitor/camera": "^6.0.2",
+    "@capacitor/core": "^6.1.2",
+    "@capacitor/filesystem": "^6.0.1",
+    "@zxing/library": "^0.21.3",
+    "idb": "^8.0.0",
+    "lucide-react": "^0.441.0",
+    "qrcode": "^1.5.4",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.26.2"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^6.1.2",
+    "@types/react": "^18.3.5",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.45",
+    "tailwindcss": "^3.4.11",
+    "vite": "^5.4.3",
+    "vite-plugin-pwa": "^0.20.5",
+    "vitest": "^2.1.0"
+  },
+  "keywords": [
+    "offline-first",
+    "healthcare",
+    "patient-referral",
+    "encrypted-qr",
+    "web-crypto",
+    "pwa",
+    "indexeddb"
+  ],
+  "author": "MediLink Offline Engineering Team",
+  "license": "UNLICENSED"
+}
+

@@ -1,0 +1,43 @@
+{
+  "name": "MediLink Offline - Secure Referral System",
+  "short_name": "MediLink Offline",
+  "description": "Offline-First Secure Patient Referral Handoff System Using Encrypted QR Codes",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f8fafc",
+  "theme_color": "#064e3b",
+  "orientation": "portrait-primary",
+  "categories": ["health", "medical", "productivity"],
+  "icons": [
+    {
+      "src": "./favicon.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "PHC Referral Portal",
+      "short_name": "PHC Portal",
+      "description": "Create and encrypt emergency patient referrals",
+      "url": "./?portal=phc",
+      "icons": [{ "src": "./favicon.svg", "sizes": "192x192" }]
+    },
+    {
+      "name": "Hospital Casualty Intake",
+      "short_name": "Hospital Intake",
+      "description": "Scan and verify incoming emergency referrals",
+      "url": "./?portal=hospital",
+      "icons": [{ "src": "./favicon.svg", "sizes": "192x192" }]
+    },
+    {
+      "name": "Admin Trust Directory",
+      "short_name": "Admin Portal",
+      "description": "Manage facility public keys and audit records",
+      "url": "./?portal=admin",
+      "icons": [{ "src": "./favicon.svg", "sizes": "192x192" }]
+    }
+  ]
+}

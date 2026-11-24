@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <rect width="100" height="100" rx="20" fill="#0284c7"/>
+  <!-- Medical Cross with QR Matrix & Shield Motif -->
+  <path d="M42 20h16v22h22v16H58v22H42V58H20V42h22V20z" fill="#ffffff"/>
+  <circle cx="50" cy="50" r="10" fill="#0284c7"/>
+  <rect x="47" y="47" width="6" height="6" fill="#ffffff" rx="1"/>
+</svg>
+

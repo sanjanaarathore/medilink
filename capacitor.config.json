@@ -1,0 +1,15 @@
+{
+  "appId": "org.medilink.offline",
+  "appName": "MediLink Offline",
+  "webDir": "dist",
+  "bundledWebRuntime": false,
+  "server": {
+    "androidScheme": "https"
+  },
+  "plugins": {
+    "Camera": {
+      "permissions": ["camera"]
+    }
+  }
+}
+
